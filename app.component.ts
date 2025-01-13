@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { VetorServiceService } from './vetor-service.service';
-import { Valor } from './valor';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ export class AppComponent {
   arrayVendas: [] = [];
   id: number = 0;
 
-  numFib?: number;
+  numUsuario: number = 0;
 
   listaVendas() {
 
@@ -29,7 +28,6 @@ export class AppComponent {
     }
 
   }
-
 
   funcaoSoma() {
 
@@ -50,17 +48,60 @@ export class AppComponent {
   }
 
   sequenciaFibonacci() {
+    
+    if(this.numUsuario < 0) {
 
-    if(this.numFib! < 0) {
       alert("Favor digite um número positivo")
-      this.numFib = 0;
+      this.numUsuario = 0;
+
+    } else {
+
+      this.ChecaSeFazParteDaSqnc()
+
     }
 
-    console.log(this.numFib)
-    // Dado a sequência de Fibonacci, onde se inicia por 0 e 1 e o próximo valor sempre será a soma dos 2 valores anteriores (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...), escreva um programa na linguagem que desejar onde, informado um número, ele calcule a sequência de Fibonacci e retorne uma mensagem avisando se o número informado pertence ou não a sequência.
+      // let somaSequenciaFibonacci = 5*(this.numUsuario*this.numUsuario)+4;
+      // console.log(somaSequenciaFibonacci)
+      // let subSequenciaFibonacci = 5*(this.numUsuario*this.numUsuario)-4
+
+      // let raizSoma = Math.sqrt(somaSequenciaFibonacci)
+      // let raizSub = Math.sqrt(subSequenciaFibonacci)
+
+      // if (Number.isInteger(raizSoma) || Number.isInteger(raizSub)) {
+      //   console.log('O número FAZ parte da sequência de Fibonacci')
+      // } else {
+      //   console.log( 'O número faz NÃO parte da sequência de Fibonacci')
+      // }
 
 
   } 
+
+  ChecaSeFazParteDaSqnc() {
+
+    let primeiroNum = 0;
+    let segundoNum = 1;
+    let proximoNum = 0;
+    let arrayFibonacci = [];
+
+    while (primeiroNum < this.numUsuario) {
+
+      proximoNum = primeiroNum;
+      primeiroNum = segundoNum;
+      segundoNum += proximoNum;
+
+      arrayFibonacci.push(primeiroNum)
+
+      console.log(arrayFibonacci)
+
+    }
+
+    if (arrayFibonacci.includes(proximoNum)){
+      console.log(`O número ${this.numUsuario} FAZ parte da sequência de Fibonacci`)
+    } else {
+      console.log(`O número ${this.numUsuario} NÃO faz parte da sequência de Fibonacci`)
+    }
+
+  }
 
   vetorFaturamento() {
 
@@ -91,8 +132,6 @@ export class AppComponent {
     });
     
   }
-
-  
 
   inverterString(){
 
